@@ -159,19 +159,26 @@ const ProductDetails = ({ productId }) => {
             </div>
 
             {/* Product Info */}
-            <div className="md:w-1/2 md:ml-10">
-              <h1 className="text-2xl md:text-3xl  mb-2">
+            <div className="md:w-1/2 md:ml-10 mb-2">
+              <h1 className="text-2xl md:text-3xl  mb-4">
                 {selectedProduct.name}
               </h1>
 
-              <p className="text-lg text-gray-600 mb-1 line-through">
-                {selectedProduct.originalPrice &&
-                  `$${selectedProduct.originalPrice}`}
-              </p>
+              <div className="flex items-center gap-4 mb-2">
+                <p className=" text-gray-500 line-through">
+                  Rs.{(selectedProduct.price * 1.1).toFixed(0)}
+                </p>
+                <p className="text-xl  text-gray-900">
+                  Rs.{selectedProduct.price}
+                </p>
+                <span className="text-black text-sm font-medium bg-gray-200 px-2 py-0.5 rounded">
+                  10% OFF
+                </span>
+              </div>
 
-              <p className="text-xl text-gray-800 mb-1">
-                ${selectedProduct.price}
-              </p>
+              {/* <p className="text-xl text-gray-800 mb-1">
+                Rs.{selectedProduct.price}
+              </p> */}
 
               <p className="text-gray-600 mb-4">
                 {selectedProduct.description}
