@@ -51,7 +51,7 @@ const ProductDetails = ({ productId }) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize ) {
+    if (!selectedSize) {
       toast.error("Please select a size before adding to cart.");
       return;
     }
@@ -180,10 +180,6 @@ const ProductDetails = ({ productId }) => {
                 Rs.{selectedProduct.price}
               </p> */}
 
-              <p className="text-gray-600 mb-4">
-                {selectedProduct.description}
-              </p>
-
               {/* Color
               <div className="mb-4">
                 <p className="text-gray-700">Color:</p>
@@ -205,7 +201,9 @@ const ProductDetails = ({ productId }) => {
                   ))}
                 </div>
               </div> */}
-
+              <p className="text-gray-600 mb-4 hidden md:block">
+                {selectedProduct.description}
+              </p>
               {/* Size */}
               <div className="mb-4">
                 <p className="text-gray-700">Size:</p>
@@ -257,27 +255,34 @@ const ProductDetails = ({ productId }) => {
               </div>
 
               {/* Buttons */}
-              <button
-                onClick={handleAddToCart}
-                disabled={
-                  isButtonDisabled || selectedProduct.countInStock === 0
-                }
-                className={`bg-black text-white hover:text-gray-200 scale-110 py-2 px-6 hover:cursor-pointer rounded w-full mb-4 ${
-                  isButtonDisabled || selectedProduct.countInStock === 0
-                    ? "cursor-not-allowed opacity-50"
-                    : "hover:bg-gray-900"
-                }`}
-              >
-                {isButtonDisabled ? "Adding..." : "ADD TO CART"}
-              </button>
+              {/* Buttons Container with margin to align */}
+              <div className=" md:pl-0 md:pr-12">
+                <button
+                  onClick={handleAddToCart}
+                  disabled={
+                    isButtonDisabled || selectedProduct.countInStock === 0
+                  }
+                  className={`bg-black text-white hover:text-gray-200 py-2 px-6 rounded w-full mb-4 transition-all ${
+                    isButtonDisabled || selectedProduct.countInStock === 0
+                      ? "cursor-not-allowed opacity-50"
+                      : "hover:bg-gray-900"
+                  }`}
+                >
+                  {isButtonDisabled ? "Adding..." : "ADD TO CART"}
+                </button>
 
-              <button
-                onClick={handleBuyNow}
-                disabled={selectedProduct.countInStock === 0}
-                className="bg-[#efefef] text-black scale-110 py-2 px-6 hover:cursor-pointer border border-black rounded hover:text-gray-700 w-full mb-4 disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                BUY NOW
-              </button>
+                <button
+                  onClick={handleBuyNow}
+                  disabled={selectedProduct.countInStock === 0}
+                  className="bg-[#efefef] text-black py-2 px-6 border border-black rounded w-full mb-4 transition-all hover:text-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  BUY NOW
+                </button>
+              </div>
+
+              <p className="text-gray-600 mb-4 block md:hidden">
+                {selectedProduct.description}
+              </p>
 
               {/* Characteristics */}
               <div className="mt-10 text-gray-700">
