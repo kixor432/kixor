@@ -117,37 +117,43 @@ router.post("/:id/finalize", protect, async (req, res) => {
       return res.status(404).json({ message: "Checkout not found." });
     }
 
-    if (checkout.isPaid && !checkout.isFinalized) {
-      //Create final order based on the checkout details
+    if (checkout.isFinalized) {
+      return res.status(400).json({ message: "Checkout already finalized" });
+    }
+
+    // COD is allowed even if not paid
+    const isCOD = checkout.paymentMethod === "COD";
+
+    if (checkout.isPaid || isCOD) {
       const finalOrder = await Order.create({
         user: checkout.user,
         orderItems: checkout.checkoutItems,
         shippingAddress: checkout.shippingAddress,
         paymentMethod: checkout.paymentMethod,
         totalPrice: checkout.totalPrice,
-        isPaid: true,
-        paidAt: checkout.paidAt,
+        isPaid: checkout.isPaid || false, // true only if already paid
+        paidAt: checkout.paidAt || null,
         isDelivered: false,
-        paymentStatus: "paid",
-        paymentDetails: checkout.paymentDetails,
+        paymentStatus: checkout.isPaid ? "paid" : isCOD ? "cod-pending" : "unpaid",
+        paymentDetails: checkout.paymentDetails || {},
       });
-      //Mark the checkout as finalized
+
       checkout.isFinalized = true;
       checkout.finalizedAt = Date.now();
       await checkout.save();
-      // Delete the cart associated with the user
+
       await Cart.findOneAndDelete({ user: checkout.user });
-      res.status(201).json(finalOrder);
-    } else if (checkout.isFinalized) {
-      res.status(400).json({ message: "Checkout Already finalized" });
+
+      return res.status(201).json(finalOrder);
     } else {
-      res.status(400).json({ message: "Checkout is not paid" });
+      return res.status(400).json({ message: "Checkout is not paid" });
     }
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
   }
 });
+
 
 router.post("/:id/create-razorpay-order", protect, async (req, res) => {
   try {

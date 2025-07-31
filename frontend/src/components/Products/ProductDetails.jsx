@@ -51,8 +51,8 @@ const ProductDetails = ({ productId }) => {
   };
 
   const handleAddToCart = () => {
-    if (!selectedSize || !selectedColor) {
-      toast.error("Please select a size and color before adding to cart.");
+    if (!selectedSize ) {
+      toast.error("Please select a size before adding to cart.");
       return;
     }
 
@@ -82,8 +82,8 @@ const ProductDetails = ({ productId }) => {
   };
 
   const handleBuyNow = () => {
-    if (!selectedSize || !selectedColor) {
-      toast.error("Please select size and color.");
+    if (!selectedSize) {
+      toast.error("Please select size.");
       return;
     }
 
