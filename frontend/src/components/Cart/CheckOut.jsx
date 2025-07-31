@@ -576,7 +576,7 @@ const CheckOut = () => {
         <div className="flex justify-between items-center text-lg mb-3">
           <p className="text-gray-700">Subtotal</p>
           <p className="font-medium text-gray-800">
-            ${cart.totalPrice?.toFixed(2)}
+            Rs. {cart.totalPrice?.toFixed(2)}
           </p>
         </div>
         <div className="flex justify-between items-center text-lg mb-6">
@@ -585,7 +585,7 @@ const CheckOut = () => {
         </div>
         <div className="flex justify-between items-center text-2xl font-bold mt-4 border-t pt-4 border-gray-300">
           <p className="text-gray-900">Total</p>
-          <p className="text-gray-900">${cart.totalPrice?.toFixed(2)}</p>
+          <p className="text-gray-900">Rs. {cart.totalPrice?.toFixed(2)}</p>
         </div>
       </div>
     </div>

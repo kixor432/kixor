@@ -8,6 +8,7 @@ const Subscriber = require("../models/Subscriber");
 
 router.post("/subscribe", async (req, res) => {
   const { email } = req.body;
+  console.log(req.body)
   if (!email) {
     return res.status(400).json({ message: "Email is required" });
   }
@@ -18,7 +19,7 @@ router.post("/subscribe", async (req, res) => {
     if (subscriber) {
       return res.status(400).json({ message: "Email us already subscribe" });
     }
-
+    console.log("hiiii")
     //Create a new subscriber
     subscriber = new Subscriber({ email });
     await subscriber.save();

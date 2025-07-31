@@ -120,6 +120,13 @@ const Navbar = () => {
               onClick={toggleNavDrawer}
               className="block text-white-600 hover:text-gray-700"
             >
+              TSHIRTS
+            </Link>
+            <Link
+              to="/collections/all"
+              onClick={toggleNavDrawer}
+              className="block text-white-600 hover:text-gray-700"
+            >
               POLOS
             </Link>
             <Link
@@ -128,13 +135,6 @@ const Navbar = () => {
               className="block text-white-600 hover:text-gray-700"
             >
               SHIRTS
-            </Link>
-            <Link
-              to="/collections/all"
-              onClick={toggleNavDrawer}
-              className="block text-white-600 hover:text-gray-700"
-            >
-              TSHIRTS
             </Link>
             {/* <Link
               to="/collections/all?category=Bottom Wear"
