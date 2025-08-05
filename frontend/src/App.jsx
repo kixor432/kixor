@@ -23,6 +23,7 @@ import UserManagement from "./components/Admin/UserManagement";
 import ProductManagement from "./components/Admin/ProductManagement";
 import EditProductPage from "./components/Admin/EditProductPage";
 import OrderManagement from "./components/Admin/OrderManagement";
+import AdminOrderDetails from "./components/Admin/AdminOrderDetails";
 
 import { Provider } from "react-redux";
 import store from "./redux/store";
@@ -68,6 +69,7 @@ const App = () => {
             </Route>
             <Route path="add-product" element={<AdminProductPage />} />
             <Route path="products/:id/edit" element={<EditProductPage />} />
+            <Route path="orders/:orderId" element={<AdminOrderDetails />} />
             <Route path="orders" element={<OrderManagement />} />
             <Route path="banners" element={<AdminBannerListPage />} />
             <Route path="add-banner" element={<AdminBannerPage />} />

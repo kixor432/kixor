@@ -564,7 +564,7 @@ const CheckOut = () => {
                 </div>
               </div>
               <p className="text-xl font-semibold text-gray-800">
-                $
+                Rs.
                 {(product.price * product.quantity)?.toLocaleString(undefined, {
                   minimumFractionDigits: 2,
                   maximumFractionDigits: 2,

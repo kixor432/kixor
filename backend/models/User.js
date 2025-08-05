@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema(
       enum: ["customer", "admin"],
       default: "customer",
     },
+    phone: {                     // Add this field
+      type: String,
+      trim: true,
+      default: "",
+    },
   },
   { timestamps: true }
 );
